@@ -1,0 +1,121 @@
+
+<div class="container">
+  <div class="row">
+      <a href="#" data-toggle="modal" data-target=".pop-up-1">
+          <img src="http://i.imgur.com/YZ7AGyF.jpg" width="150" class="img-responsive img-rounded center-block" alt="">
+      </a>
+          
+          <hr>
+          
+          <!-- Thumbnail link for lion image -->
+          <a href="#" data-toggle="modal" data-target=".pop-up-2">
+          <img src="http://i.imgur.com/dtaHtds.jpg" width="150" class="img-responsive img-rounded center-block" alt="">
+          </a>
+          
+          <hr>
+          <small>
+          Creative Commons image: <a href="http://tinyurl.com/flickrmixer">Desmond Talkington on Flickr.com (mixer) </a>
+          <br>
+          Creative Commons image: <a href="http://www.flickr.com/photos/fortherock/3898712750/sizes/z/">fortherock on Flickr.com (lion) </a>  
+          <br>
+          <a href="http://tinyurl.com/tbvalid5" target="_blank">HTML 5 Valid</a>
+          </small>  
+          <hr>
+                
+          <!--  Modal content for the mixer image example -->
+            <div class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+          
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>                
+                  </div>
+                  <div class="modal-body">
+                  <img src="http://www.meblezaton.com/archetix/webmedia/web/2011-06-15-g8582edc1b0e4254fcdb0aaab15be96dc/duze/img_t0Tj943sw.jpg" class="img-responsive img-rounded center-block" alt="">
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal mixer image -->
+           
+           <!--  Modal content for the lion image example -->
+            <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+          
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>                  
+                  </div>
+                  <div class="modal-body">
+                  <img src="http://i.imgur.com/kzGVqbd.jpg" class="img-responsive img-rounded center-block" alt="">
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal mixer image -->
+            
+  </div>
+</div>
+
+<div class="caruselcontainer">
+        <div id="carousel">
+			<figure><img src="http://lorempixel.com/186/116/people/1" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/people/2" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/people/3" alt=""></figure>
+		
+			<figure><img src="http://lorempixel.com/186/116/people/5" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/6" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/7" alt=""></figure>
+			<figure><img src="http://lorempixel.com/186/116/nature/8" alt=""></figure>
+		</div>
+  </div>
+  
+  <h2 style="text-align:center">Lightbox</h2>
+  <div class="lightbox">
+  <div class="lightbox row">
+    <div class="lightbox column">
+      <img src="https://www.w3schools.com/howto/img_nature.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+    </div>
+    <div class="lightbox column">
+      <img src="https://www.w3schools.com/howto/img_fjords.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+    </div>
+    <div class="lightbox column">
+      <img src="https://www.w3schools.com/howto/img_mountains.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+    </div>
+    <div class="lightbox column">
+      <img src="https://www.w3schools.com/howto/img_lights.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+    </div>
+  </div>
+  
+  <div id="myModal" class="modal">
+    <span class="close cursor" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+  
+      <div class="mySlides">
+        <div class="numbertext">1 / 4</div>
+        <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+      </div>
+  
+      <div class="mySlides">
+        <div class="numbertext">2 / 4</div>
+        <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="width:100%">
+      </div>
+  
+      <div class="mySlides">
+        <div class="numbertext">3 / 4</div>
+        <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="width:100%">
+      </div>
+      
+      <div class="mySlides">
+        <div class="numbertext">4 / 4</div>
+        <img src="https://www.w3schools.com/howto/img_lights_wide.jpg" style="width:100%">
+      </div>
+      
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  
+      <div class="caption-container">
+        <p id="caption"></p>
+      </div>
+    
+    </div>
+  </div>
+</div>
