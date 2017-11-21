@@ -13,15 +13,15 @@
 
 <div id="myModal" class="modal" [class.showModal]="DisplayModal" [class.hideModal]="!DisplayModal">
   <span class="close cursor" (click)="ShowModal(false)">&times;</span>
-  <div class="modal-content">
-
-    <div class="mySlides" >
-      <div class="numbertext"> {{CurrentImageNumber}} / {{ImagesCount}}</div>
+  
+  <div class="modal-content" style="text-align:center">
+     
+      <a class="prev inline" (click)="PrevSlide()">&#10094;</a>
+      <p class="numbertext inline"> {{CurrentImageNumber}} / {{ImagesCount}}</p>
+      <a class="next inline" (click)="NextSlide()">&#10095;</a>
+     
+    <div class="mySlides" >     
       <img [src]="CurrentImageSrc" style="width:100%">
-    </div>
-    
-    <a class="prev" (click)="PrevSlide()">&#10094;</a>
-    <a class="next" (click)="NextSlide()">&#10095;</a>
-
-  </div>
+    </div> 
+  </div> 
 </div>
