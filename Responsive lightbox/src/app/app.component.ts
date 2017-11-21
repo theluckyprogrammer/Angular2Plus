@@ -1,73 +1,62 @@
 
-import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
-
 import { Renderer2, OnInit, Inject, Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { GetGalleryService } from './get-gallery.service'
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
+export class AppComponent {
 
-  constructor(private _renderer2: Renderer2, @Inject(DOCUMENT) private _document)
-  {}
+  public DisplayModal: Boolean;  
+  public Images : Array<string>;
+  public CurrentImageSrc : string;
 
-  ngOnInit(): void {     
+  private _currentSlideIndex : number;
+  private _lastImageIndex : number;
 
-    this.galleryOptions = [
-      {
-        width: '600px',
-        height: '800px',
-        thumbnailsColumns: 2,
-        thumbnailsRows: 2,
+  get ImagesCount():number {
+    return this._lastImageIndex + 1;
+}
 
-      }
-    ];
+get CurrentImageNumber():number {
+  return this._currentSlideIndex + 1;
+}
 
-    let s = this._renderer2.createElement('script');    
-    s.text = `
-    function openModal() {
-      document.getElementById('myModal').style.display = "block";
-    }
-    
-    function closeModal() {
-      document.getElementById('myModal').style.display = "none";
-    }
-    
-    var slideIndex = 1;
-    showSlides(slideIndex);
-    
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-    
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-    
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      var captionText = document.getElementById("caption");
-      if (n > slides.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
-      for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";
-      dots[slideIndex-1].className += " active";
-      captionText.innerHTML = dots[slideIndex-1].alt;
-    }
-    `;
+  constructor(private _getGallery: GetGalleryService)
+  { 
+    this.Images = _getGallery.GetImages();
+    this.DisplayModal = false;
+    this._currentSlideIndex = 0;
+    this._lastImageIndex = this.Images.length-1;
+  } 
 
-    this._renderer2.appendChild(this._document.body, s);
+  ShowModal(show: boolean):void {
+    this.DisplayModal = show;
+  }
+
+  CurrentSlide(slideIndex: number)
+  {    
+    this._currentSlideIndex = slideIndex;
+    this.SetImageSrc();
+  }
+
+  NextSlide()
+  {
+    this._currentSlideIndex =  this._currentSlideIndex + 1 > this._lastImageIndex ? 0 : this._currentSlideIndex + 1;
+    this.SetImageSrc();
+  }
+
+  PrevSlide()
+  {
+    this._currentSlideIndex =  this._currentSlideIndex === 0 ? this._lastImageIndex : this._currentSlideIndex - 1;
+    this.SetImageSrc();
+  }
+
+  private SetImageSrc() : void
+  {
+    this.CurrentImageSrc = this.Images[this._currentSlideIndex];   
   }
 }

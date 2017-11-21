@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
+import { GetGalleryService } from './get-gallery.service';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent
   ],
-  providers: [ ],
+  providers: [ GetGalleryService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
