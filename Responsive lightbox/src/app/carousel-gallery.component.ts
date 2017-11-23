@@ -1,19 +1,17 @@
-import { Renderer2, OnInit, Inject, Component } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Inject, Component } from '@angular/core';
 import { GetGalleryService } from './get-gallery.service'
 import { GalleryPage } from './gallery-page.dto';
-import { EmptyArray } from './empty-array.pipe';
-import {ViewEncapsulation} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 
 
 @Component({
-  selector: 'simple-gallery',
-  templateUrl: './simple-gallery.html',
-  styleUrls: ['./simple-gallery.css'],
+  selector: 'carousel-gallery',
+  templateUrl: './carousel-gallery.html',
+  styleUrls: ['./carousel-gallery.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class SimpleGalleryComponent {
+export class CarouselGalleryComponent {
 
   public CurrentImageSrc : string;
   public CurrentPage: number = 1;
@@ -38,11 +36,8 @@ get CurrentImageNumber():number {
 }
 
   constructor(private _getGallery: GetGalleryService)
-  { 
-    
+  {     
     this.ChangePage();
-
-    var testPipe = new EmptyArray().transform(8);
   } 
 
   ShowModal(show: boolean):void {

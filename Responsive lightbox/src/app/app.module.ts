@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxGalleryModule } from 'ngx-gallery';
 
-import { SimpleGalleryComponent } from './simple-gallery.component';
+import { CarouselGalleryComponent } from './carousel-gallery.component';
 import { GetGalleryService } from './get-gallery.service';
-import { EmptyArray } from './empty-array.pipe'
+
 
 @NgModule({
   imports: [
@@ -12,10 +12,9 @@ import { EmptyArray } from './empty-array.pipe'
     NgxGalleryModule
   ],
   declarations: [
-    SimpleGalleryComponent,
-    EmptyArray
+    CarouselGalleryComponent
   ],
   providers: [ GetGalleryService ],
-  bootstrap: [ SimpleGalleryComponent ]
+  bootstrap: [ CarouselGalleryComponent ]
 })
 export class AppModule { }
