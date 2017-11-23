@@ -1,22 +1,18 @@
 <div class="container">
   <div class="row">
-<h2 style="text-align:center">Lightbox</h2>
+<h2 style="text-align:center">Simple gallery</h2>
 <ul class="pagination" >
     <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" [ngClass]="{active: imgPage+1 === CurrentPage}" 
      (click)="CurrentPage= imgPage+1; ChangePage();" ><a>{{imgPage+1}}</a></li>   
   </ul>
+
 <div class="lightbox">
 <div class="lightbox row">
   <div 
   class="lightbox column"
-  *ngFor="let imgSrc of Images; let imgIndex = index"   
-  > 
+  *ngFor="let imgSrc of Images; let imgIndex = index" > 
   <img [src]="imgSrc" style="width:100%;" (click)="ShowModal(true)" (click)="CurrentSlide(imgIndex)" class="hover-shadow cursor galleryImg">
  </div>
- <br style="clear: both;"> 
-
- 
- 
 
 <div id="myModal" class="modal" [class.showModal]="DisplayModal" [class.hideModal]="!DisplayModal">
   <span class="close cursor" (click)="ShowModal(false)">&times;</span>

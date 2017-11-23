@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GalleryPage } from './galleryPage';
+import { GalleryPage } from './gallery-page.dto';
 
 @Injectable()
 export class GetGalleryService {
