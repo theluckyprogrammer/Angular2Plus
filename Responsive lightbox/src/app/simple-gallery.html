@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 <h2 style="text-align:center">Simple gallery</h2>
-<ul class="pagination" >
+<ul class="pagination" [class.show]="!DisplayModal" [class.hide]="DisplayModal" >
     <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" [ngClass]="{active: imgPage+1 === CurrentPage}" 
      (click)="CurrentPage= imgPage+1; ChangePage();" ><a>{{imgPage+1}}</a></li>   
   </ul>
@@ -14,7 +14,7 @@
   <img [src]="imgSrc" style="width:100%;" (click)="ShowModal(true)" (click)="CurrentSlide(imgIndex)" class="hover-shadow cursor galleryImg">
  </div>
 
-<div id="myModal" class="modal" [class.showModal]="DisplayModal" [class.hideModal]="!DisplayModal">
+<div id="myModal" class="modal" [class.show]="DisplayModal" [class.hide]="!DisplayModal">
   <span class="close cursor" (click)="ShowModal(false)">&times;</span>
   
   <div class="modal-content" style="text-align:center">

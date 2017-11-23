@@ -23,10 +23,7 @@ export class SimpleGalleryComponent {
 
   private currentSlideIndex : number;
   private lastImageIndex : number;
-
-  
-  
-  private _pageSize: number = 10;
+  private pageSize: number = 10;
 
 
   get ImagesCount():number {
@@ -38,11 +35,8 @@ get CurrentImageNumber():number {
 }
 
   constructor(private _getGallery: GetGalleryService)
-  { 
-    
+  {     
     this.ChangePage();
-
-    var testPipe = new EmptyArray().transform(8);
   } 
 
   ShowModal(show: boolean):void {
@@ -74,7 +68,7 @@ get CurrentImageNumber():number {
 
   ChangePage()
   {
-    var page: GalleryPage = this._getGallery.GetPage(this.CurrentPage, this._pageSize);
+    var page: GalleryPage = this._getGallery.GetPage(this.CurrentPage, this.pageSize);
     this.Images = page.Images;
     this.DisplayModal = false;
     this.currentSlideIndex = 0;
