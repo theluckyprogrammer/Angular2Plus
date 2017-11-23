@@ -4,6 +4,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 
 import { AppComponent } from './app.component';
 import { GetGalleryService } from './get-gallery.service';
+import { EmptyArray } from './EmptyArray.pipe'
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { GetGalleryService } from './get-gallery.service';
     NgxGalleryModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    EmptyArray
   ],
   providers: [ GetGalleryService ],
   bootstrap: [ AppComponent ]

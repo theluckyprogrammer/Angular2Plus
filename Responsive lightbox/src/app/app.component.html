@@ -4,11 +4,16 @@
 <div class="lightbox">
 <div class="lightbox row">
   <div 
-  class="lightbox column col-lg-3"
+  class="lightbox column"
   *ngFor="let imgSrc of Images; let imgIndex = index"   
   > 
   <img [src]="imgSrc" style="width:100%;" (click)="ShowModal(true)" (click)="CurrentSlide(imgIndex)" class="hover-shadow cursor galleryImg">
  </div>
+ <br style="clear: both;"> 
+
+ <ul class="pagination TextCentered" >
+    <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" ngClass=""><a>{{imgPage+1}}</a></li>   
+  </ul>
  
 
 <div id="myModal" class="modal" [class.showModal]="DisplayModal" [class.hideModal]="!DisplayModal">

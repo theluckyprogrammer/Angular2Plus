@@ -2,6 +2,9 @@
 import { Renderer2, OnInit, Inject, Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { GetGalleryService } from './get-gallery.service'
+import { GalleryPage } from './galleryPage';
+import { EmptyArray } from './EmptyArray.pipe';
+
 
 @Component({
   selector: 'my-app',
@@ -17,6 +20,11 @@ export class AppComponent {
   private _currentSlideIndex : number;
   private _lastImageIndex : number;
 
+  public CurrentPage: number = 1;
+  public LastPage: number = 1;
+  private _pageSize: number = 10;
+
+
   get ImagesCount():number {
     return this._lastImageIndex + 1;
 }
@@ -27,10 +35,14 @@ get CurrentImageNumber():number {
 
   constructor(private _getGallery: GetGalleryService)
   { 
-    this.Images = _getGallery.GetImages();
+    var page: GalleryPage = _getGallery.GetPage(this.CurrentPage, this._pageSize);
+    this.Images = page.Images;
     this.DisplayModal = false;
     this._currentSlideIndex = 0;
-    this._lastImageIndex = this.Images.length-1;
+    this._lastImageIndex = page.LastImageIndex;
+    this.LastPage = page.LastPage;
+
+    var testPipe = new EmptyArray().transform(8);
   } 
 
   ShowModal(show: boolean):void {
