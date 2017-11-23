@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
 <h2 style="text-align:center">Lightbox</h2>
+<ul class="pagination" >
+    <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" [ngClass]="{active: imgPage+1 === CurrentPage}" 
+     (click)="CurrentPage= imgPage+1; ChangePage();" ><a>{{imgPage+1}}</a></li>   
+  </ul>
 <div class="lightbox">
 <div class="lightbox row">
   <div 
@@ -11,9 +15,7 @@
  </div>
  <br style="clear: both;"> 
 
- <ul class="pagination TextCentered" >
-    <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" ngClass=""><a>{{imgPage+1}}</a></li>   
-  </ul>
+ 
  
 
 <div id="myModal" class="modal" [class.showModal]="DisplayModal" [class.hideModal]="!DisplayModal">

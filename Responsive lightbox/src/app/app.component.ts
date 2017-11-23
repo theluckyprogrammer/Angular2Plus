@@ -1,15 +1,17 @@
-
 import { Renderer2, OnInit, Inject, Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { GetGalleryService } from './get-gallery.service'
 import { GalleryPage } from './galleryPage';
 import { EmptyArray } from './EmptyArray.pipe';
+import {ViewEncapsulation} from '@angular/core';
+
 
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class AppComponent {
 
@@ -35,12 +37,8 @@ get CurrentImageNumber():number {
 
   constructor(private _getGallery: GetGalleryService)
   { 
-    var page: GalleryPage = _getGallery.GetPage(this.CurrentPage, this._pageSize);
-    this.Images = page.Images;
-    this.DisplayModal = false;
-    this._currentSlideIndex = 0;
-    this._lastImageIndex = page.LastImageIndex;
-    this.LastPage = page.LastPage;
+    
+    this.ChangePage();
 
     var testPipe = new EmptyArray().transform(8);
   } 
@@ -67,8 +65,19 @@ get CurrentImageNumber():number {
     this.SetImageSrc();
   }
 
-  private SetImageSrc() : void
+  SetImageSrc() : void
   {
     this.CurrentImageSrc = this.Images[this._currentSlideIndex];   
+  }  
+
+  ChangePage()
+  {
+    var page: GalleryPage = this._getGallery.GetPage(this.CurrentPage, this._pageSize);
+    this.Images = page.Images;
+    this.DisplayModal = false;
+    this._currentSlideIndex = 0;
+    this._lastImageIndex = page.LastImageIndex;
+    this.LastPage = page.LastPage;
   }
+
 }
