@@ -1,38 +1,40 @@
 import { Renderer2, OnInit, Inject, Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { GetGalleryService } from './get-gallery.service'
-import { GalleryPage } from './galleryPage';
-import { EmptyArray } from './EmptyArray.pipe';
+import { GalleryPage } from './gallery-page.dto';
+import { EmptyArray } from './empty-array.pipe';
 import {ViewEncapsulation} from '@angular/core';
 
 
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'simple-gallery',
+  templateUrl: './simple-gallery.html',
+  styleUrls: ['./simple-gallery.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class AppComponent {
+export class SimpleGalleryComponent {
 
+  public CurrentImageSrc : string;
+  public CurrentPage: number = 1;
   public DisplayModal: Boolean;  
   public Images : Array<string>;
-  public CurrentImageSrc : string;
+  public LastPage: number = 1;  
 
-  private _currentSlideIndex : number;
-  private _lastImageIndex : number;
+  private currentSlideIndex : number;
+  private lastImageIndex : number;
 
-  public CurrentPage: number = 1;
-  public LastPage: number = 1;
+  
+  
   private _pageSize: number = 10;
 
 
   get ImagesCount():number {
-    return this._lastImageIndex + 1;
+    return this.lastImageIndex + 1;
 }
 
 get CurrentImageNumber():number {
-  return this._currentSlideIndex + 1;
+  return this.currentSlideIndex + 1;
 }
 
   constructor(private _getGallery: GetGalleryService)
@@ -49,25 +51,25 @@ get CurrentImageNumber():number {
 
   CurrentSlide(slideIndex: number)
   {    
-    this._currentSlideIndex = slideIndex;
+    this.currentSlideIndex = slideIndex;
     this.SetImageSrc();
   }
 
   NextSlide()
   {
-    this._currentSlideIndex =  this._currentSlideIndex + 1 > this._lastImageIndex ? 0 : this._currentSlideIndex + 1;
+    this.currentSlideIndex =  this.currentSlideIndex + 1 > this.lastImageIndex ? 0 : this.currentSlideIndex + 1;
     this.SetImageSrc();
   }
 
   PrevSlide()
   {
-    this._currentSlideIndex =  this._currentSlideIndex === 0 ? this._lastImageIndex : this._currentSlideIndex - 1;
+    this.currentSlideIndex =  this.currentSlideIndex === 0 ? this.lastImageIndex : this.currentSlideIndex - 1;
     this.SetImageSrc();
   }
 
   SetImageSrc() : void
   {
-    this.CurrentImageSrc = this.Images[this._currentSlideIndex];   
+    this.CurrentImageSrc = this.Images[this.currentSlideIndex];   
   }  
 
   ChangePage()
@@ -75,8 +77,8 @@ get CurrentImageNumber():number {
     var page: GalleryPage = this._getGallery.GetPage(this.CurrentPage, this._pageSize);
     this.Images = page.Images;
     this.DisplayModal = false;
-    this._currentSlideIndex = 0;
-    this._lastImageIndex = page.LastImageIndex;
+    this.currentSlideIndex = 0;
+    this.lastImageIndex = page.LastImageIndex;
     this.LastPage = page.LastPage;
   }
 
