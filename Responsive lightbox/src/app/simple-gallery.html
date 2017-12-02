@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-<h2 style="text-align:center">Simple gallery</h2>
-<ul class="pagination" [class.show]="!DisplayModal" [class.hide]="DisplayModal" >
+
+<ul class="pagination" [class.hide]="DisplayModal" >
     <li  *ngFor="let empty of LastPage | EmptyArray; let imgPage = index" [ngClass]="{active: imgPage+1 === CurrentPage}" 
      (click)="CurrentPage= imgPage+1; ChangePage();" ><a>{{imgPage+1}}</a></li>   
   </ul>
